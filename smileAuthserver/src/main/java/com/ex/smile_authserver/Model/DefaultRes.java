@@ -1,10 +1,11 @@
-package com.ex.smilegate_api_server.Model;
+package com.ex.smile_authserver.Model;
 
-import com.ex.smilegate_api_server.Util.ResponseMessage;
-import com.ex.smilegate_api_server.Util.StatusCode;
+import com.ex.smile_authserver.Util.ResponseMessage;
+import com.ex.smile_authserver.Util.StatusCode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 

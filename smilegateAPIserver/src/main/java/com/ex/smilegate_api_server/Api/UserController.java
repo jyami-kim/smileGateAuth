@@ -37,16 +37,6 @@ public class UserController {
         }
     }
 
-    // 회원 가입
-    @PostMapping("")
-    ResponseEntity saveUser(@RequestBody final User user){
-        try{
-            return new ResponseEntity(userService.createUser(user), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity(DefaultRes.FAIL_DEFAULT_RES, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
     // 회원 수정
     @PutMapping("/{userId}")
     ResponseEntity updateUser(@RequestBody final User user, @PathVariable(value= "userId") final int userId){

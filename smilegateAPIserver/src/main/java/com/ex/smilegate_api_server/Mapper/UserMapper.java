@@ -10,10 +10,6 @@ import java.util.List;
 public interface UserMapper {
 
 
-    //create
-    @Insert("INSERT INTO user (userName, email, password) VALUES (#{user.userName}, #{user.email}, #{user.password});")
-    void createUser(@Param("user") final User user);
-
     //readOne
     @Select("SELECT * FROM user WHERE userId = #{userId};")
     User readOneUser(@Param("userId") final int userId);

@@ -6,6 +6,7 @@ import com.ex.smilegate_api_server.Model.DefaultRes;
 import com.ex.smilegate_api_server.Util.ResponseMessage;
 import com.ex.smilegate_api_server.Util.StatusCode;
 import lombok.extern.slf4j.Slf4j;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
@@ -17,6 +18,7 @@ import java.util.List;
 public class UserService {
 
     private UserMapper userMapper;
+
 
     UserService(final UserMapper userMapper){
         this.userMapper = userMapper;
@@ -43,21 +45,7 @@ public class UserService {
     }
 
 
-    // 회원 가입
-    @Transactional
-    public DefaultRes createUser(final User user){
-        try{
-            if(user!=null){
-                userMapper.createUser(user);
-                return DefaultRes.res(StatusCode.OK, ResponseMessage.CREATED_USER);
-            }
-            return DefaultRes.res(StatusCode.BAD_REQUEST, ResponseMessage.NOT_FOUND_USER);
-        }catch(Exception e){
-            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-            log.error(e.getMessage());
-            return DefaultRes.res(StatusCode.DB_ERROR, ResponseMessage.DB_ERROR);
-        }
-    }
+
 
     // 회원 수정
     @Transactional
