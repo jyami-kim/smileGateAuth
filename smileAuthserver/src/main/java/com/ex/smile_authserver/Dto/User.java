@@ -11,7 +11,8 @@ public class User
     private String userName;
     private String email;
     private String password;
-    private String authority; //Enum 사용을 하고 싶다..
+    private int level; //0 : 일반회원, 1 :  관리자
+    private int status;  //0 : ok(정상), 1 : hold (정지), 2 : delete (삭제)
     private Timestamp createTime;
     private Timestamp updateTime;
 }

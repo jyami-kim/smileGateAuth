@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import java.util.UUID;
+
 @Service
 @Slf4j
 public class AuthService {
@@ -23,23 +25,18 @@ public class AuthService {
         this.userMapper = userMapper;
     }
 
-    //login
+    //DefaultRes관련 method
+
     public DefaultRes login(final SignInReq signInReq){
 
         final User user = userMapper.findByEmail(signInReq.getEmail());
         if(user !=null){
             if(BCrypt.checkpw(signInReq.getPassword(), user.getPassword())){ //패스워드 확인
-                //토큰 발급
-//                final JwtService.TokenRes tokenDto = new JwtService.TokenRes(jwtService.create(user.getIdx()));
-                return DefaultRes.res(StatusCode.OK, ResponseMessage.LOGIN_SUCCESS, user);
+                return DefaultRes.res(StatusCode.OK, ResponseMessage.LOGIN_SUCCESS, getToken());
             }
         }
         return DefaultRes.res(StatusCode.BAD_REQUEST, ResponseMessage.LOGIN_FAIL);
     }
-
-
-    //토큰 발급 service
-
 
 
     // 회원 가입
@@ -53,7 +50,6 @@ public class AuthService {
                         //암호화
                         log.info(signUpReq.getPassword());
                         //getsalt() : 숫자가 높아질수록 해쉬를 생성하고 검증하는 시간은 느려진다. 즉, 보안이 우수해진다. 하지만 그만큼 응답 시간이 느려지기 때문에 적절한 숫자를 선정해야 한다. 기본값은 10이다.
-
                         String passwordHashed = BCrypt.hashpw(signUpReq.getPassword(), BCrypt.gensalt());
                         signUpReq.setPassword(passwordHashed);
 
@@ -77,4 +73,12 @@ public class AuthService {
             return DefaultRes.res(StatusCode.DB_ERROR, ResponseMessage.DB_ERROR);
         }
     }
+
+    // token 발급 관련 method
+    public String getToken(){
+        UUID uuid = UUID.randomUUID();
+        String randomUUIDString = uuid.toString();
+        return randomUUIDString;
+    }
+
 }

@@ -1,8 +1,8 @@
-package com.ex.smilegate_api_server.Api;
+package com.ex.smile_authserver.Api;
 
-import com.ex.smilegate_api_server.Dto.User;
-import com.ex.smilegate_api_server.Model.DefaultRes;
-import com.ex.smilegate_api_server.Service.UserService;
+import com.ex.smile_authserver.Dto.User;
+import com.ex.smile_authserver.Model.DefaultRes;
+import com.ex.smile_authserver.Service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,6 @@ import java.util.Optional;
 @RequestMapping("/user")
 @Slf4j
 public class UserController {
-
     private UserService userService;
 
     UserController(final UserService userService){
