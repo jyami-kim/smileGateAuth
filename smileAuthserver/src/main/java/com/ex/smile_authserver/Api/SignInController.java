@@ -1,7 +1,6 @@
 package com.ex.smile_authserver.Api;
 
 import com.ex.smile_authserver.Model.SignInReq;
-import com.ex.smile_authserver.Model.SignUpReq;
 import com.ex.smile_authserver.Service.AuthService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
